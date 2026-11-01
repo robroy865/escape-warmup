@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Odd Stone</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Start screen, part 1 -->
+  <section id="start-screen" class="screen">
+    <div class="top-bar"><a class="link-btn" href="index.html">← All games</a></div>
+    <div class="intro">
+      <h1>The Odd Stone</h1>
+      <p class="tagline">Nine stones look the same, but one is heavier.<br>You can use the scale only twice. Find the heavy stone.</p>
+      <svg id="stones-hero" class="stones-hero" viewBox="0 0 400 250" aria-hidden="true"></svg>
+      <button id="start-btn" class="btn primary big">Start</button>
+      <div class="rules">
+        <p>Drag stones onto the left and right pans (or tap a stone to move it).</p>
+        <p>Press <b>Weigh</b>: the scale tips to the heavier side, or stays level.</p>
+        <p>After two weighings, choose the heavy stone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Start screen, part 2 -->
+  <section id="start2-screen" class="screen hidden">
+    <div class="top-bar"><button id="back2-btn" class="link-btn">← All games</button></div>
+    <div class="intro">
+      <p class="part-tag">Part 2</p>
+      <h1>The Odder Stone</h1>
+      <p class="tagline">Twelve stones. One of them is different, but this time you do not know if it is <b>heavier or lighter</b>.</p>
+      <svg id="stones-hero2" class="stones-hero" viewBox="0 0 400 250" aria-hidden="true"></svg>
+      <button id="start2-btn" class="btn primary big">Start part 2</button>
+      <div class="rules">
+        <p>You can use the scale <b>three times</b>.</p>
+        <p>Find the odd stone <b>and</b> say whether it is heavier or lighter.</p>
+        <p>The same rules as before: a sure method earns 3 stars, a lucky answer 2.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game-screen" class="screen hidden">
+    <div class="top-bar"><button id="back-btn" class="link-btn">← All games</button></div>
+    <p id="instructions"></p>
+    <div id="level-info"></div>
+    <div id="status"></div>
+
+    <svg id="scale-board" viewBox="0 0 400 355"></svg>
+
+    <div id="prompt" class="prompt"></div>
+    <div id="choice" class="choice hidden">
+      <button id="heavier-btn" class="btn choice-btn">Heavier</button>
+      <button id="lighter-btn" class="btn choice-btn">Lighter</button>
+    </div>
+    <ol id="log" class="weigh-log"></ol>
+
+    <div id="result"></div>
+    <div class="buttons">
+      <button id="weigh-btn" class="btn primary" disabled>Weigh</button>
+      <button id="continue-btn" class="btn primary hidden">Reset</button>
+      <button id="submit-btn" class="btn primary hidden" disabled>Submit</button>
+      <button id="new-btn" class="btn hidden">Play again</button>
+      <button id="next-btn" class="btn primary hidden">Next level</button>
+    </div>
+  </section>
+
+  <script src="js/stones.js"></script>
+</body>
+</html>

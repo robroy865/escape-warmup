@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crack the Code</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Start screen -->
+  <section id="start-screen" class="screen">
+    <div class="top-bar"><a class="link-btn" href="index.html">← All games</a></div>
+    <div class="intro">
+      <h1>Crack the Code</h1>
+      <p class="tagline">Find the secret lock code in as few guesses as possible.</p>
+      <svg id="lock-hero" class="lock-svg" viewBox="0 0 120 130" aria-hidden="true"></svg>
+      <button id="start-btn" class="btn primary big">Start</button>
+      <div class="rules">
+        <p>Digits can repeat, for example 3 3 7.</p>
+        <p>After each guess the digits change colour:</p>
+        <p class="key-line"><span class="mini t-correct">5</span> right digit, right place</p>
+        <p class="key-line"><span class="mini t-present">5</span> right digit, wrong place</p>
+        <p class="key-line"><span class="mini t-absent">5</span> not in the code</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game-screen" class="screen hidden">
+    <div class="top-bar"><button id="back-btn" class="link-btn">← All games</button></div>
+    <p id="instructions"></p>
+    <div id="level-info"></div>
+    <div id="status"></div>
+
+    <div class="code-area">
+      <svg id="lock" class="lock-svg small" viewBox="0 -26 120 156" aria-hidden="true"></svg>
+      <div id="grid" class="code-grid"></div>
+    </div>
+
+    <div id="keypad" class="keypad"></div>
+
+    <div id="result"></div>
+    <div class="buttons">
+      <button id="newcode-btn" class="btn hidden">New code</button>
+      <button id="next-btn" class="btn primary hidden">Next level</button>
+      <button id="summary-btn" class="btn primary hidden">See summary</button>
+    </div>
+  </section>
+
+  <!-- Run summary -->
+  <section id="summary-screen" class="screen hidden">
+    <h2 class="summary-title">Run complete</h2>
+    <div id="summary-total"></div>
+    <table id="summary-table"></table>
+    <div class="buttons">
+      <button id="home-btn" class="btn">All games</button>
+      <button id="again-btn" class="btn primary">Play again</button>
+    </div>
+  </section>
+
+  <script src="js/code.js"></script>
+</body>
+</html>

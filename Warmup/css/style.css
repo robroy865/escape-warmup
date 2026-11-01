@@ -1,0 +1,260 @@
+/* Styles for the Salesman puzzle */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #14181f;
+  color: #e9edf3;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.screen {
+  width: 100%;
+  max-width: 700px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Start screen ---------- */
+#start-screen, #start2-screen { min-height: 100vh; justify-content: flex-start; text-align: center; padding-top: 16px; }
+#start-screen .intro, #start2-screen .intro { margin-top: 24px; }
+.intro { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+.intro h1 { font-size: 46px; margin: 0; letter-spacing: 1px; }
+.tagline { color: #a9b4c4; margin: 0; font-size: 17px; }
+#hero { width: 100%; max-width: 520px; margin: 8px 0 4px; }
+.btn.big { font-size: 22px; padding: 14px 56px; }
+
+.verdict { margin-top: 6px; color: #c7d0dd; }
+
+.play-more {
+  width: 100%;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #2a3240;
+}
+.play-more h2 { margin: 0 0 6px; font-size: 20px; }
+.play-more p { margin: 0 0 14px; color: #a9b4c4; line-height: 1.5; }
+.links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.link-card {
+  flex: 1 1 200px; max-width: 280px;
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 14px 16px;
+  background: #1c222c; border: 1px solid #2f3847; border-radius: 12px;
+  color: #e9edf3; text-decoration: none;
+}
+.link-card:hover { border-color: #f2c94c; }
+.link-visit { color: #f2c94c; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.link-name { font-weight: 700; font-size: 17px; }
+.link-sub { color: #8f9bb0; font-size: 13px; }
+
+/* ---------- Game screen ---------- */
+#instructions { margin: 0; font-size: 15px; line-height: 1.5; color: #c7d0dd; text-align: center; }
+#level-info { font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums; }
+#status { color: #a9b4c4; font-size: 15px; font-variant-numeric: tabular-nums; }
+
+/* Board: square, fits the screen width and height */
+#board {
+  width: min(95vw, 56vh, 668px);
+  height: min(95vw, 56vh, 668px);
+  background: #1c222c;
+  border-radius: 12px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Places (buildings and the home house) */
+.place { cursor: pointer; }
+.place .body { stroke: transparent; stroke-width: 5; }
+.place.visited .body { stroke: #f2c94c; }
+.place .badge { visibility: hidden; }
+.place.visited .badge { visibility: visible; }
+.place .badge circle { fill: #f2c94c; stroke: #14181f; stroke-width: 3; }
+.place.current .badge circle { stroke: #6fd3ff; stroke-width: 7; }
+.place .badge text { fill: #14181f; font-size: 22px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+
+/* Player route */
+.route-line { stroke: #f2c94c; stroke-width: 5; }
+.arrow-head { fill: #f2c94c; }
+.dist-label {
+  fill: #e9edf3; font-weight: 600; text-anchor: middle; dominant-baseline: central;
+  paint-order: stroke; stroke: #1c222c; stroke-width: 10px; stroke-linejoin: round;
+}
+
+/* Shortest route (after submit) */
+.opt-line { stroke: #6fd3ff; stroke-width: 4; stroke-dasharray: 14 10; }
+.arrow-head-opt { fill: #6fd3ff; }
+
+/* Start screen illustration */
+.hero-route { stroke: #f2c94c; stroke-width: 3; stroke-dasharray: 8 7; fill: none; }
+
+#result { text-align: center; font-size: 16px; display: flex; flex-direction: column; gap: 4px; }
+#result .stars { font-size: 40px; letter-spacing: 6px; color: #f2c94c; line-height: 1.1; }
+#result .praise { font-size: 20px; font-weight: 700; color: #f2c94c; }
+#result .breakdown { color: #c7d0dd; }
+.time-stars { color: #6fd3ff; margin-left: 14px; }
+td.time-stars { margin-left: 0; }
+
+/* River and bridge */
+.river path { fill: none; stroke-linecap: butt; stroke-linejoin: round; }
+.river-bank { stroke: #2b4a5c; }
+.river-water { stroke: #3f7fb3; }
+.river, .bridge { pointer-events: none; }
+
+/* Run summary */
+.summary-title { margin: 24px 0 0; font-size: 30px; }
+#summary-total { font-size: 26px; font-weight: 800; color: #f2c94c; }
+#summary-table { border-collapse: collapse; margin: 8px 0 14px; font-size: 16px; }
+#summary-table th, #summary-table td { padding: 7px 12px; border-bottom: 1px solid #2a3240; text-align: center; }
+#summary-table th { color: #a9b4c4; font-weight: 600; }
+#summary-table td.st { color: #f2c94c; letter-spacing: 2px; }
+#summary-table td.time-stars { color: #6fd3ff; }
+.traveller { pointer-events: none; }
+.labels { pointer-events: none; }
+.legend { font-size: 14px; color: #a9b4c4; }
+.key { display: inline-block; width: 22px; height: 0; vertical-align: middle; margin: 0 6px 0 10px; }
+.key.yours { border-top: 4px solid #f2c94c; }
+.key.opt { border-top: 4px dashed #6fd3ff; }
+
+.buttons { display: flex; gap: 10px; }
+
+.btn {
+  font-size: 18px; font-weight: 600;
+  padding: 12px 28px;
+  border: 0; border-radius: 10px;
+  background: #2f3847; color: #e9edf3;
+  cursor: pointer;
+}
+.btn.primary { background: #f2c94c; color: #14181f; }
+.btn:disabled { opacity: 0.35; cursor: default; }
+
+/* Back to the start page */
+.top-bar { width: 100%; display: flex; justify-content: flex-start; margin-bottom: -4px; }
+.link-btn { background: none; border: 0; color: #a9b4c4; font-size: 15px; cursor: pointer; padding: 4px 0; }
+.link-btn:hover { color: #f2c94c; }
+
+/* All possible connections, drawn faintly */
+.all-connections line { stroke: #8a97ab; stroke-width: 2; opacity: 0.25; }
+
+/* ---------- Landing page ---------- */
+.menu-screen { min-height: 100vh; text-align: center; padding-top: 40px; gap: 28px; max-width: 640px; }
+.menu-head h1 { font-size: 40px; margin: 4px 0 6px; }
+.eyebrow { margin: 0; color: #f2c94c; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+.game-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 22px 16px 18px; border-radius: 16px; text-decoration: none; color: #e9edf3;
+  background: #1a1f28; border-top: 4px solid var(--accent);
+  transition: transform 0.15s, background 0.15s;
+}
+.game-tile:hover { transform: translateY(-3px); background: #20262f; }
+.tile-icon { width: 120px; height: 80px; margin-bottom: 6px; }
+.tile-name { font-size: 19px; font-weight: 700; }
+.tile-sub { color: #a9b4c4; font-size: 14px; }
+.tile-play {
+  margin-top: 10px; padding: 6px 18px; border-radius: 999px; font-size: 14px; font-weight: 700;
+  background: var(--accent); color: #14181f;
+}
+.soon-tile { opacity: 0.6; }
+.soon-tile .tile-play { background: transparent; color: #a9b4c4; border: 1px solid #4b5568; }
+.blank-tile { background: transparent; border: 2px dashed #2a3240; border-top: 2px dashed #2a3240; min-height: 200px; }
+.blank-tile:hover { transform: none; background: transparent; }
+/* Small screens: keep the 2 x 2 grid, with smaller tiles */
+@media (max-width: 520px) {
+  .game-grid { gap: 10px; }
+  .game-tile { padding: 14px 8px 12px; }
+  .tile-icon { width: 90px; height: 60px; }
+  .tile-name { font-size: 15px; }
+  .tile-sub { display: none; }
+  .tile-play { margin-top: 6px; padding: 4px 14px; font-size: 13px; }
+  .blank-tile { min-height: 150px; }
+  .menu-head h1 { font-size: 32px; }
+}
+.menu-screen .play-more { margin-top: 12px; }
+.menu-screen .play-more h2 { margin-bottom: 14px; }
+.soon-big { font-size: 22px; font-weight: 700; color: #a9b4c4; margin: 24px 0; }
+a.btn { text-decoration: none; display: inline-block; }
+a.link-btn { text-decoration: none; }
+
+/* ---------- Crack the Code ---------- */
+.lock-svg { width: 120px; height: 130px; }
+.lock-svg.small { width: 44px; height: 57px; margin-top: 4px; }
+.rules { color: #c7d0dd; font-size: 15px; line-height: 1.5; margin-top: 10px; }
+.rules p { margin: 2px 0; }
+.code-area { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; max-width: 480px; }
+/* Word-game style grid: orange = right place, pink = wrong place, grey = not in the code */
+:root { --c-correct: #f4793a; --c-present: #e46aa5; --c-absent: #3a404c; }
+.code-grid { display: flex; flex-direction: column; gap: 5px; align-items: center; }
+.tile-row { display: flex; gap: 6px; }
+.tile {
+  width: min(54px, calc((92vw - 6px * (var(--n) - 1)) / var(--n)));
+  /* rows shrink so the whole grid and the keypad fit on the screen */
+  height: clamp(26px, calc((100vh - 430px) / var(--rows, 10) - 5px), 48px);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 800; border-radius: 6px; font-variant-numeric: tabular-nums;
+}
+.tile.empty { border: 2px solid #262c37; }
+.tile.typing { border: 2px solid #4b5568; }
+.tile.typing.cursor { border-color: #e9edf3; }
+.t-correct { background: var(--c-correct); color: #14181f; }
+.t-present { background: var(--c-present); color: #14181f; }
+.t-absent { background: var(--c-absent); color: #c7d0dd; }
+.tile.t-correct, .tile.t-present, .tile.t-absent { border: 0; }
+.tile.reveal { animation: flip 0.35s ease both; }
+@keyframes flip { from { transform: rotateX(90deg); } to { transform: rotateX(0); } }
+.mini { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 4px; font-size: 13px; font-weight: 800; vertical-align: middle; margin-right: 4px; }
+.key-line { white-space: nowrap; margin: 0 6px; }
+.rules .key-line { margin: 4px 0; }
+.keypad { display: grid; grid-template-columns: repeat(5, minmax(48px, 64px)); gap: 8px; justify-content: center; margin-top: 8px; }
+.padkey {
+  width: 100%; height: 52px; font-size: 22px; font-weight: 700; border: 0; border-radius: 10px;
+  background: #2f3847; color: #e9edf3; cursor: pointer;
+}
+.padkey:disabled { opacity: 0.3; cursor: default; }
+.padkey.wide { font-size: 17px; }
+.padkey[data-key="del"] { grid-column: span 2; }
+.padkey[data-key="enter"] { grid-column: span 3; }
+.padkey.primary { background: #f2c94c; color: #14181f; }
+.padkey.t-correct { background: var(--c-correct); color: #14181f; }
+.padkey.t-present { background: var(--c-present); color: #14181f; }
+.padkey.t-absent {
+  background: #15181e; color: #4b5568; box-shadow: inset 0 0 0 1px #262c37;
+  text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: #8f9bb0;
+}
+.secret { color: #f2c94c; letter-spacing: 3px; }
+
+/* ---------- The Odd Stone ---------- */
+.stones-hero { width: 100%; max-width: 380px; }
+.part-tag { margin: 0; color: #f2c94c; font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+.choice { display: flex; gap: 10px; justify-content: center; }
+.choice-btn { min-width: 120px; border: 2px solid transparent; }
+.choice-btn.on { border-color: #f2c94c; color: #f2c94c; }
+#scale-board { width: min(96vw, 60vh, 540px); height: auto; aspect-ratio: 400 / 355; touch-action: none; user-select: none; -webkit-user-select: none; }
+.stone { cursor: grab; }
+.stone-body { stroke: #5d6168; stroke-width: 1.5; }
+.stone-label { fill: #14181f; font-size: 17px; font-weight: 800; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.stone.picked .stone-body { stroke: #f2c94c; stroke-width: 4; }
+.stone.heavy-reveal .stone-body { stroke: #f4793a; stroke-width: 4; }
+.chain { stroke: #a9b4c4; stroke-width: 2; }
+.pan { fill: #6b7385; stroke: #a9b4c4; stroke-width: 2; }
+.prompt { color: #e9edf3; font-weight: 600; text-align: center; min-height: 1.3em; }
+.weigh-log { margin: 0; padding-left: 22px; color: #c7d0dd; font-size: 15px; line-height: 1.6; }
+.weigh-log:empty { display: none; }
+
+/* ---------- Escape the Car Park ---------- */
+.park-svg { width: 100%; max-width: 480px; aspect-ratio: 452 / 388; touch-action: none; user-select: none; -webkit-user-select: none; }
+.park-svg.hero { max-width: 300px; margin: 8px 0 4px; }
+.park-svg .car { cursor: grab; }
+.park-svg .car.dragging { cursor: grabbing; filter: brightness(1.12); }
+.park-svg .car.you rect:first-child { stroke: #fff6d6; stroke-opacity: 0.9; stroke-width: 3; }
+.exit-text { fill: #e9edf3; font-size: 15px; font-weight: 800; letter-spacing: 1px; text-anchor: middle; }
+@media (max-width: 520px) { #summary-table th, #summary-table td { padding: 7px 6px; } }

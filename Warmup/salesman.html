@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traveling Salesman</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Start screen -->
+  <section id="start-screen" class="screen">
+    <div class="top-bar"><a class="link-btn" href="index.html">← All games</a></div>
+    <div class="intro">
+      <h1>Traveling Salesman</h1>
+      <p class="tagline">Visit every place. Find the shortest route.</p>
+      <svg id="hero" viewBox="0 0 600 260" aria-hidden="true"></svg>
+      <button id="start-btn" class="btn primary big">Start</button>
+    </div>
+
+  </section>
+
+  <!-- Game screen -->
+  <section id="game-screen" class="screen hidden">
+    <div class="top-bar"><button id="back-btn" class="link-btn">← All games</button></div>
+    <p id="instructions">
+      Your route starts at Home.<br>
+      Visit every place once, then return to Home.<br>
+      Tap a visited place to remove it.<br>
+      <span id="river-note"></span>
+    </p>
+    <div id="level-info"></div>
+    <div id="status"></div>
+    <svg id="board" viewBox="0 0 1000 1000"></svg>
+    <div id="result"></div>
+    <div class="buttons">
+      <button id="clear-btn" class="btn">Clear</button>
+      <button id="submit-btn" class="btn primary" disabled>Submit</button>
+      <button id="newmap-btn" class="btn hidden">New map</button>
+      <button id="next-btn" class="btn primary hidden">Next level</button>
+      <button id="summary-btn" class="btn primary hidden">See summary</button>
+    </div>
+  </section>
+
+  <!-- Run summary -->
+  <section id="summary-screen" class="screen hidden">
+    <h2 class="summary-title">Run complete</h2>
+    <div id="summary-total"></div>
+    <table id="summary-table"></table>
+    <div class="buttons">
+      <button id="home-btn" class="btn">All games</button>
+      <button id="again-btn" class="btn primary">Play again</button>
+    </div>
+  </section>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
